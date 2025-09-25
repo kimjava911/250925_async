@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>시계</title>
+  </head>
+  <body>
+    <section id="clock"></section>
+    <script>
+      const clock = document.querySelector("#clock");
+      setInterval(() => {
+        // clock.textContent = new Date();
+        const date = new Date();
+        // HH:MM:ss 2자리수 표기법에 익숙
+        // clock.textContent = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        const hour = date.getHours().toString().padStart(2, "0`");
+        const miniute = date.getMinutes().toString().padStart(2, "0`");
+        const second = date.getSeconds().toString().padStart(2, "0`");
+        clock.textContent = `${hour}:${miniute}:${second}`;
+      }, 1000);
+    </script>
+  </body>
+</html>
