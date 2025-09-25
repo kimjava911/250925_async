@@ -28,14 +28,19 @@
         clock.textContent = `${hour}:${miniute}:${second}`;
       }, 1000);
       // 초 타이머
+      let timerSecond = 0; // 남은 초를 공용으로 쓴다
+      let timerId = 0; // 공용으로 사용한다
       document.querySelector("#startBtn").addEventListener("click", () => {
+        clearInterval(timerId); // 중지하고 시작을 함
         // input에 있는 값을 불러오고...
-        let timerSecond = Number(document.querySelector("#timerSecond").value);
+        // let timerSecond = Number(document.querySelector("#timerSecond").value);
+        timerSecond = Number(document.querySelector("#timerSecond").value);
         console.log(timerSecond);
         // second -> span.
         const second = document.querySelector("#second");
         second.textContent = timerSecond; // 최초 second 값을 주입한 다음에
-        const timerId = setInterval(() => {
+        // const timerId = setInterval(() => {
+        timerId = setInterval(() => {
           // 특정 타이머 id를.
           timerSecond--;
           second.textContent = timerSecond;
