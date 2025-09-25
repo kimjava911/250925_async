@@ -10,8 +10,9 @@
     <section>
       <input id="timerSecond" type="number" />초 타이머
       <section>
-        <button id="startBtn">시작</button
-        ><button id="pauseBtn">일지정지/재시작</button>
+        <button id="startBtn">시작</button>
+        <button id="pauseBtn">일지정지</button>
+        <button id="restartBtn">재시작</button>
       </section>
       <span id="second"></span>초 남았습니다
     </section>
@@ -44,11 +45,27 @@
           // 특정 타이머 id를.
           timerSecond--;
           second.textContent = timerSecond;
-          if (timerSecond == 0) {
+          if (timerSecond <= 0) {
             // 0에 도달하면
             clearInterval(timerId); // 진행하던 타이머를 중지.
           }
         }, 1000);
+        console.log("timerId", timerId);
+      });
+      document.querySelector("#pauseBtn").addEventListener("click", () => {
+        clearInterval(timerId); // interval만 멈춘다
+        // dom 화면 변경도 멈추고, 데이터 변경도 멈춘 것.
+      });
+      document.querySelector("#restartBtn").addEventListener("click", () => {
+        // 기존에 새롭게 데이터를 배정하주는 로직은 실행하지 않고 화면과, 데이터 업데이트 로직만 interval에 주입.
+        timerId = setInterval(() => {
+          timerSecond--;
+          second.textContent = timerSecond;
+          if (timerSecond <= 0) {
+            clearInterval(timerId);
+          }
+        }, 1000);
+        console.log("timerId", timerId);
       });
     </script>
   </body>
