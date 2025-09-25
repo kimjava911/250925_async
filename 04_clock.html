@@ -8,7 +8,7 @@
   <body>
     <section id="clock"></section>
     <section>
-      <input type="number" />초 타이머
+      <input id="timerSecond" type="number" />초 타이머
       <section>
         <button id="startBtn">시작</button
         ><button id="pauseBtn">일지정지/재시작</button>
@@ -27,6 +27,24 @@
         const second = date.getSeconds().toString().padStart(2, "0`");
         clock.textContent = `${hour}:${miniute}:${second}`;
       }, 1000);
+      // 초 타이머
+      document.querySelector("#startBtn").addEventListener("click", () => {
+        // input에 있는 값을 불러오고...
+        let timerSecond = Number(document.querySelector("#timerSecond").value);
+        console.log(timerSecond);
+        // second -> span.
+        const second = document.querySelector("#second");
+        second.textContent = timerSecond; // 최초 second 값을 주입한 다음에
+        const timerId = setInterval(() => {
+          // 특정 타이머 id를.
+          timerSecond--;
+          second.textContent = timerSecond;
+          if (timerSecond == 0) {
+            // 0에 도달하면
+            clearInterval(timerId); // 진행하던 타이머를 중지.
+          }
+        }, 1000);
+      });
     </script>
   </body>
 </html>
